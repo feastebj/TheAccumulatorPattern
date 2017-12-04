@@ -9,8 +9,8 @@ Additionally, it emphasizes that you must
 before you can implement a solution to the problem in Python.
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Benjamin Feaster.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -110,6 +110,26 @@ def draw_parallel_lines(n, point, length, window):
     ####################################################################
     # ------------------------------------------------------------------
 
+    rg.RoseWindow(window)
+    x = point.x  # Initialize x and y BEFORE the loop
+    y = point.y  # Choose values that make the FIRST object easy to draw
+
+    for _ in range(n):
+
+        point = rg.Point(x, y)
+        line = rg.(point, 100)
+        circle.fill_color = color
+
+        # Attach the object(s) to the window.
+        circle.attach_to(window)
+
+        # --------------------------------------------------------------
+        # Increment x (and in other problems, other variables)
+        # for the thing(s) to draw in the NEXT iteration of the loop.
+        # --------------------------------------------------------------
+        x = x + (radius * 2)
+
+    window.render()
 
 def run_test_draw_lines():
     """ Tests the   draw_lines  function. """
