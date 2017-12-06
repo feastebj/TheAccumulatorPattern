@@ -99,6 +99,7 @@ def draw_parallel_lines(n, point, length, window):
     for k in range(n):
         line = rg.Line(point, rg.Point(30, 30))
         return line(line.start, line.end + 30)
+
     line.attach_to(window)
     close_on_mouse_click
 

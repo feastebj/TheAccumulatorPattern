@@ -113,8 +113,10 @@ def sum_more_cosines(m, n):
 
     total = 0  # Initialize to 0 BEFORE the loop
     for _ in range(n):  # Loop
-        total = total + (math.cos(m))  # Accumulate INSIDE the loop.
-        m = m + 1
+        if m < n:
+            total = total + (math.cos(m))  # Accumulate INSIDE the loop.
+            m = m + 1
+    total = total + math.cos(n)
     return total
 
 
@@ -195,11 +197,17 @@ def count_sines_from(m, n):
       -- count_sines_from(9, 9)  returns  1
     """
 
-    count = m  # Initialize to 0 BEFORE the loop
-    for k in range(n):  # Loop
-        if math.sin(k + 1) < 0.5:  # If the condition holds:
-            count = count + 1  # Increment INSIDE the loop.
+    count = 0
+    for _ in range(n):  # Loop
+        if math.sin(m + 1) < 0.5:  # If the condition holds:
+            count = count + 1
+        else:
+            count = count + 0
 
+    if math.sin(m) < 0.5:
+        count = count + 1
+    if math.sin(n) < 0.5:
+        count = count + 1
     return count
 
     # ------------------------------------------------------------------
@@ -302,10 +310,18 @@ def count_sines_vs_cosines(m):
     #   of the RANGE expression, if you happen to know them.
     # ------------------------------------------------------------------
 
-    count = -m
-    for k in range(m):  # Loop
-        if math.sin(k) > math.cos(k):  # If the condition holds:
-            count = count + 1  # Increment INSIDE the loop.
+    count = 0
+    for _ in range(2 * m):  # Loop
+        if math.sin(-m + 1) > math.cos(-m + 1):  # If the condition holds:
+            count = count + 1
+        else:
+            count = count + 0
+
+    if math.sin(-m) > math.cos(-m):  # If the condition holds:
+        count = count + 1
+    if math.sin(m) > math.cos(m):  # If the condition holds:
+        count = count + 1
+
     return count
 
 # ----------------------------------------------------------------------
