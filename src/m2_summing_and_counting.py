@@ -28,8 +28,8 @@ import math
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_sum_more_cosines()
-    #run_test_count_sines_from()
-    #run_test_count_sines_vs_cosines()
+    run_test_count_sines_from()
+    run_test_count_sines_vs_cosines()
 
 
 def run_test_sum_more_cosines():
@@ -67,13 +67,13 @@ def run_test_sum_more_cosines():
     print('       actual:  ', answer)
 
     # Test 2:
-    expected = 0.13416  # This is APPROXIMATELY the correct answer.
+    expected = 0.02082  # This is APPROXIMATELY the correct answer.
     answer = sum_more_cosines(-4, 1)
     print('Test 2 expected:', expected, '(approximately)')
     print('       actual:  ', answer)
 
     # Test 3:
-    expected = 0.13416  # This is APPROXIMATELY the correct answer.
+    expected = -0.23581  # This is APPROXIMATELY the correct answer.
     answer = sum_more_cosines(0, 5)
     print('Test 3 expected:', expected, '(approximately)')
     print('       actual:  ', answer)
@@ -111,12 +111,11 @@ def sum_more_cosines(m, n):
     #   Reason: To ensure that you get more practice using variables.
     # ------------------------------------------------------------------
 
-
-    count = 0
-    while m > n:
-        for k in range(abs(m)+abs(n)+1):
-            count = count + math.cos(m + 1)
-    return count
+    total = 0  # Initialize to 0 BEFORE the loop
+    for _ in range(n):  # Loop
+        total = total + (math.cos(m))  # Accumulate INSIDE the loop.
+        m = m + 1
+    return total
 
 
 def run_test_count_sines_from():
@@ -141,20 +140,20 @@ def run_test_count_sines_from():
     print('       actual:  ', answer)
 
     # Test 2:
-    expected = 5
-    answer = count_sines_from(2, 8)
+    expected = 3
+    answer = count_sines_from(4, 6)
     print('Test 2 expected:', expected)
     print('       actual:  ', answer)
 
     # Test 3:
-    expected = 5
-    answer = count_sines_from(1, 7)
+    expected = 0
+    answer = count_sines_from(7, 7)
     print('Test 3 expected:', expected)
     print('       actual:  ', answer)
 
     # Test 4:
-    expected = 5
-    answer = count_sines_from(0, 8)
+    expected = 1
+    answer = count_sines_from(9, 9)
     print('Test 4 expected:', expected)
     print('       actual:  ', answer)
 
@@ -196,7 +195,12 @@ def count_sines_from(m, n):
       -- count_sines_from(9, 9)  returns  1
     """
 
-    for k in range(abs(m) + abs(n)):
+    count = m  # Initialize to 0 BEFORE the loop
+    for k in range(n):  # Loop
+        if math.sin(k + 1) < 0.5:  # If the condition holds:
+            count = count + 1  # Increment INSIDE the loop.
+
+    return count
 
     # ------------------------------------------------------------------
     # TODO: 5. Implement and test this function.
@@ -227,6 +231,36 @@ def run_test_count_sines_vs_cosines():
     expected = 100
     answer = count_sines_vs_cosines(101)
     print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 2:
+    expected = 6
+    answer = count_sines_vs_cosines(5)
+    print('Test 2 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 3:
+    expected = 4
+    answer = count_sines_vs_cosines(3)
+    print('Test 3 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 4:
+    expected = 0
+    answer = count_sines_vs_cosines(0)
+    print('Test 4 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 5:
+    expected = 1
+    answer = count_sines_vs_cosines(1)
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+
+    # Test 6:
+    expected = 100
+    answer = count_sines_vs_cosines(101)
+    print('Test 6 expected:', expected)
     print('       actual:  ', answer)
 
     # ------------------------------------------------------------------
@@ -268,6 +302,11 @@ def count_sines_vs_cosines(m):
     #   of the RANGE expression, if you happen to know them.
     # ------------------------------------------------------------------
 
+    count = -m
+    for k in range(m):  # Loop
+        if math.sin(k) > math.cos(k):  # If the condition holds:
+            count = count + 1  # Increment INSIDE the loop.
+    return count
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
