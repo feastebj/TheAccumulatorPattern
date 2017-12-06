@@ -28,14 +28,14 @@ import math
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_sum_more_cosines()
-    run_test_count_sines_from()
-    run_test_count_sines_vs_cosines()
+    #run_test_count_sines_from()
+    #run_test_count_sines_vs_cosines()
 
 
 def run_test_sum_more_cosines():
     """ Tests the   sum_more_cosines   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  sum_more_cosines  function defined below.
     #   Include at least **   3   ** tests (we wrote one for you).
     #
@@ -111,12 +111,11 @@ def sum_more_cosines(m, n):
     #   Reason: To ensure that you get more practice using variables.
     # ------------------------------------------------------------------
 
-    count = 0
-    add = math.cos(m + 1)
-    for k in range(n):
-        add(k)
-        return add
 
+    count = 0
+    while m > n:
+        for k in range(abs(m)+abs(n)+1):
+            count = count + math.cos(m + 1)
     return count
 
 
@@ -196,6 +195,9 @@ def count_sines_from(m, n):
       -- count_sines_from(7, 7)  returns  0
       -- count_sines_from(9, 9)  returns  1
     """
+
+    for k in range(abs(m) + abs(n)):
+
     # ------------------------------------------------------------------
     # TODO: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).

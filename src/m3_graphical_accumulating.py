@@ -95,6 +95,13 @@ def draw_parallel_lines(n, point, length, window):
       :type length: int
       :type window: rg.RoseWindow
     """
+
+    for k in range(n):
+        line = rg.Line(point, rg.Point(30, 30))
+        return line(line.start, line.end + 30)
+    line.attach_to(window)
+    close_on_mouse_click
+
     # ------------------------------------------------------------------
     # TODO: 2. Implement and test this function.
     #          Tests have been written for you (above).
@@ -110,26 +117,6 @@ def draw_parallel_lines(n, point, length, window):
     ####################################################################
     # ------------------------------------------------------------------
 
-    rg.RoseWindow(window)
-    x = point.x  # Initialize x and y BEFORE the loop
-    y = point.y  # Choose values that make the FIRST object easy to draw
-
-    for _ in range(n):
-
-        point = rg.Point(x, y)
-        line = rg.(point, 100)
-        circle.fill_color = color
-
-        # Attach the object(s) to the window.
-        circle.attach_to(window)
-
-        # --------------------------------------------------------------
-        # Increment x (and in other problems, other variables)
-        # for the thing(s) to draw in the NEXT iteration of the loop.
-        # --------------------------------------------------------------
-        x = x + (radius * 2)
-
-    window.render()
 
 def run_test_draw_lines():
     """ Tests the   draw_lines  function. """
