@@ -27,8 +27,8 @@ import math
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_sum_more_cosines()
-    run_test_count_sines_from()
+    # run_test_sum_more_cosines()
+    # run_test_count_sines_from()
     run_test_count_sines_vs_cosines()
 
 
@@ -99,7 +99,7 @@ def sum_more_cosines(m, n):
          which is approximately 0.02082.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #   That is called TEST-DRIVEN DEVELOPMENT (TDD).
     #
@@ -112,10 +112,8 @@ def sum_more_cosines(m, n):
     # ------------------------------------------------------------------
 
     total = 0  # Initialize to 0 BEFORE the loop
-    for _ in range(n):  # Loop
-        if m < n:
-            total = total + (math.cos(m))  # Accumulate INSIDE the loop.
-            m = m + 1
+    for k in range(n):  # Loop
+        total = total + (math.cos((k + m)))  # Accumulate INSIDE the loop.
     total = total + math.cos(n)
     return total
 
@@ -123,7 +121,7 @@ def sum_more_cosines(m, n):
 def run_test_count_sines_from():
     """ Tests the   count_sines_from   function. """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # DONE: 4. Implement this TEST function.
     #   It TESTS the  count_sines_from  function defined below.
     #   Include at least **   6   ** tests (we wrote one for you).
     #              ** Yes, 6 (six) tests. **
@@ -166,7 +164,7 @@ def run_test_count_sines_from():
     print('       actual:  ', answer)
 
     # Test 6:
-    expected = 5
+    expected = 6
     answer = count_sines_from(-2, 10)
     print('Test 6 expected:', expected)
     print('       actual:  ', answer)
@@ -198,20 +196,21 @@ def count_sines_from(m, n):
     """
 
     count = 0
-    for _ in range(n):  # Loop
-        if math.sin(m + 1) < 0.5:  # If the condition holds:
+    for k in range(n - 2):
+        if math.sin(m + k) < 0.5:
             count = count + 1
+        elif m == n:
+            if math.sin(m) < 0.5:
+                return 1
+            else:
+                return 0
         else:
             count = count + 0
-
-    if math.sin(m) < 0.5:
-        count = count + 1
-    if math.sin(n) < 0.5:
-        count = count + 1
     return count
 
+
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPORTANT: As in previous problems in this session,
@@ -223,7 +222,7 @@ def count_sines_from(m, n):
 def run_test_count_sines_vs_cosines():
     """ Tests the   count_sines_vs_cosines   function. """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement this TEST function.
+    # DONE: 6. Implement this TEST function.
     #   It TESTS the  count_sines_vs_cosines  function defined below.
     #   Include at least **   6   ** tests (we wrote one for you).
     #              ** Yes, 6 (six) tests. **
@@ -302,7 +301,7 @@ def count_sines_vs_cosines(m):
       -- Also:  count_sines_vs_cosines(101) returns 100 (trust me!)
     """
     # ------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # DONE: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPORTANT: As in previous problems in this session,
@@ -311,17 +310,11 @@ def count_sines_vs_cosines(m):
     # ------------------------------------------------------------------
 
     count = 0
-    for _ in range(2 * m):  # Loop
-        if math.sin(-m + 1) > math.cos(-m + 1):  # If the condition holds:
+    for k in range((2 * m) + 1):
+        if math.sin(-m + k) > math.cos(-m + k):
             count = count + 1
         else:
             count = count + 0
-
-    if math.sin(-m) > math.cos(-m):  # If the condition holds:
-        count = count + 1
-    if math.sin(m) > math.cos(m):  # If the condition holds:
-        count = count + 1
-
     return count
 
 # ----------------------------------------------------------------------
