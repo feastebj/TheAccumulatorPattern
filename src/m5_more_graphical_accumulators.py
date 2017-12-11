@@ -30,8 +30,8 @@ import math
 def main():
     """ Calls the   TEST   functions in this module. """
     # run_test_draw_squares_from_circle()
-    run_test_draw_circles_from_rectangle()
-    # run_test_draw_lines_from_rectangles()
+    # run_test_draw_circles_from_rectangle()
+    run_test_draw_lines_from_rectangles()
 
 
 def run_test_draw_squares_from_circle():
@@ -142,7 +142,7 @@ def run_test_draw_circles_from_rectangle():
     print('--------------------------------------------------')
 
     # ------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # DONE: 3. Implement this TEST function.
     #   It TESTS the  draw_circles_from_rectangle  function
     #   defined below.  Include at least **   3   ** tests, of which
     #      ***  at least TWO tests are on ONE window and
@@ -223,7 +223,7 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
       :type window: rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -336,7 +336,7 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
       :type window: rg.RoseWindow
       """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -350,6 +350,38 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     ####################################################################
     # ------------------------------------------------------------------
 
+    center1 = rectangle1.get_center()
+    w1 = rectangle1.get_width()
+    h1 = rectangle1.get_height()
+
+    center2 = rectangle1.get_center()
+
+    rectangle1.attach_to(window)
+    rectangle2.attach_to(window)
+
+
+    line = rg.Line((center1.x, center1.y), (center2.x, center2.y))
+    rg.Line.color = rectangle1.outline_color
+    line.attach_to(window)
+
+    for k in range(n):
+
+        if n == 0:
+            rg.Line.color = rectangle1.outline_color
+        elif n % 2 == 1:
+            rg.Line.color = rectangle2.outline_color
+        elif n % 2 == 0:
+            rg.Line.color = rectangle1.outline_color
+
+        line = rg.Line((center1.x - w1, center1.y - h1), (center2.x - w1,
+                                                          center2.y - h1))
+        line.attach_to(window)
+        center1.y = center1.y + h1
+        center1.x = center1.x - w1
+        center2.y = center2.y + h1
+        center2.x = center2.x - w1
+
+    window.render()
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
