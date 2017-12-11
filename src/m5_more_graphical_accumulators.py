@@ -354,32 +354,41 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     w1 = rectangle1.get_width()
     h1 = rectangle1.get_height()
 
-    center2 = rectangle1.get_center()
+    center2 = rectangle2.get_center()
 
     rectangle1.attach_to(window)
     rectangle2.attach_to(window)
 
 
-    line = rg.Line((center1.x, center1.y), (center2.x, center2.y))
-    rg.Line.color = rectangle1.outline_color
+    line = rg.Line(rg.Point(center1.x, center1.y), rg.Point(center2.x,
+                                                          center2.y))
+    line.thickness = 5
+    line.color = rectangle1.outline_color
     line.attach_to(window)
 
-    for k in range(n):
+    for _ in range(n):
 
+
+
+        line = rg.Line(rg.Point(center1.x, center1.y),
+                       rg.Point(center2.x, center2.y))
+        line.thickness = 5
         if n == 0:
-            rg.Line.color = rectangle1.outline_color
+            line.color = rectangle1.outline_color
         elif n % 2 == 1:
-            rg.Line.color = rectangle2.outline_color
+            line.color = rectangle2.outline_color
         elif n % 2 == 0:
-            rg.Line.color = rectangle1.outline_color
+            line.color = rectangle1.outline_color
+        n = n + 1
 
-        line = rg.Line((center1.x - w1, center1.y - h1), (center2.x - w1,
-                                                          center2.y - h1))
+
+
         line.attach_to(window)
-        center1.y = center1.y + h1
-        center1.x = center1.x - w1
-        center2.y = center2.y + h1
-        center2.x = center2.x - w1
+        center1.y = center1.y + h1 * 0.5
+        center1.x = center1.x - w1 * 0.5
+        center2.y = center2.y + h1 * 0.5
+        center2.x = center2.x - w1 * 0.5
+
 
     window.render()
 
